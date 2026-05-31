@@ -9,9 +9,14 @@ export class PlayersService {
     private readonly playerRepository: IPlayerRepository,
   ) {}
 
-  async getPlayers(): Promise<Player[]> {
-  return this.playerRepository.findAll();
-}
+  async getPlayers(
+    page: number,
+    limit: number,
+  ): Promise<Player[]> {
+    const offset = (page - 1) * limit;
+
+    return this.playerRepository.findAll(limit, offset);
+  }
 
   getPlayerById(id: number): Promise<Player | undefined> {
     return this.playerRepository.findOneById(id);

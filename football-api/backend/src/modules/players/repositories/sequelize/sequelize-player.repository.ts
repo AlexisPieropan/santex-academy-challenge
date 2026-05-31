@@ -11,10 +11,14 @@ export class SequelizePlayerRepository implements IPlayerRepository {
     private readonly playerModel: typeof PlayerModel,
   ) {}
 
-  async findAll(): Promise<Player[]> {
-    const playerList = await this.playerModel.findAll();
-    return playerList.map((x) => this.mapToEntity(x));
-  }
+  async findAll(limit: number, offset: number): Promise<Player[]> {
+  const playerList = await this.playerModel.findAll({
+    limit,
+    offset,
+  });
+
+  return playerList.map((x) => this.mapToEntity(x));
+}
 
   async findOneById(id: number): Promise<Player | undefined> {
     const model = await this.playerModel.findByPk(id);
