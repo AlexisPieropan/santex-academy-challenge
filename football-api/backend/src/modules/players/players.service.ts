@@ -9,6 +9,10 @@ export class PlayersService {
     private readonly playerRepository: IPlayerRepository,
   ) {}
 
+  async getPlayers(): Promise<Player[]> {
+  return this.playerRepository.findAll();
+}
+
   getPlayerById(id: number): Promise<Player | undefined> {
     return this.playerRepository.findOneById(id);
   }

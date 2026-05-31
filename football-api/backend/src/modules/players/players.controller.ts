@@ -14,6 +14,15 @@ import { PlayerDto } from './dto/player.dto';
 export class PlayersController {
   constructor(private readonly playersService: PlayersService) {}
 
+  
+  @Get()
+@HttpCode(HttpStatus.OK)
+async getPlayers(): Promise<PlayerDto[]> {
+  const players = await this.playersService.getPlayers();
+
+  return players.map((player) => new PlayerDto(player));
+}
+
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   async getPlayerById(
