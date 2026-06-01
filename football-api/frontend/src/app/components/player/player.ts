@@ -14,15 +14,25 @@ import { PlayerService, Player } from '../../services/player/player';
 export class PlayerComponent implements OnInit {
   players: Player[] = [];
   errorMessage = '';
+  search = '';
 
-  constructor(private playerService: PlayerService) {}
-
-  ngOnInit() {
-  console.log('PlayerComponent initialized');
-
-  this.playerService.getPlayers(1, 20).subscribe({
+loadPlayers() {
+  this.playerService.getPlayers(1, 20, this.search).subscribe({
     next: (data) => (this.players = data),
     error: () => (this.errorMessage = 'Error al cargar jugadores'),
   });
+}
+
+onSearch(event: Event) {
+  const target = event.target as HTMLInputElement;
+  this.search = target.value;
+  this.loadPlayers();
+}
+
+  constructor(private playerService: PlayerService) {}
+
+ ngOnInit() {
+  console.log('PlayerComponent initialized');
+  this.loadPlayers();
 }
 }
