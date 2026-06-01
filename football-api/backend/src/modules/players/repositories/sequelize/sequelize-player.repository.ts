@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { PlayerModel } from './player.model'; // Sequelize model
 import { IPlayerRepository } from '../../interfaces/player-repository.interface';
 import { Player } from '../../entities/player.entity';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class SequelizePlayerRepository implements IPlayerRepository {
@@ -11,14 +12,26 @@ export class SequelizePlayerRepository implements IPlayerRepository {
     private readonly playerModel: typeof PlayerModel,
   ) {}
 
-  async findAll(limit: number, offset: number): Promise<Player[]> {
+  async findAll(
+  limit: number,
+  offset: number,
+  search?: string,
+): Promise<Player[]> {
   const playerList = await this.playerModel.findAll({
+    where: search
+      ? {
+          longName: {
+            [Op.like]: `%${search}%`,
+          },
+        }
+      : undefined,
     limit,
     offset,
   });
 
   return playerList.map((x) => this.mapToEntity(x));
 }
+
 
   async findOneById(id: number): Promise<Player | undefined> {
     const model = await this.playerModel.findByPk(id);

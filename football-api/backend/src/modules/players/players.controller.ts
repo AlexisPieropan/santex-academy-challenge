@@ -16,18 +16,21 @@ export class PlayersController {
   constructor(private readonly playersService: PlayersService) {}
 
   @Get()
-  @HttpCode(HttpStatus.OK)
-  async getPlayers(
-    @Query('page') page = 1,
-    @Query('limit') limit = 20,
-  ): Promise<PlayerDto[]> {
-    const players = await this.playersService.getPlayers(
-      Number(page),
-      Number(limit),
-    );
+@HttpCode(HttpStatus.OK)
+async getPlayers(
+  @Query('page') page = 1,
+  @Query('limit') limit = 20,
+  @Query('search') search?: string,
+): Promise<PlayerDto[]> {
+  const players = await this.playersService.getPlayers(
+    Number(page),
+    Number(limit),
+    search,
+  );
 
-    return players.map((player) => new PlayerDto(player));
-  }
+  return players.map((player) => new PlayerDto(player));
+}
+
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)

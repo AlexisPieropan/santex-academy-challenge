@@ -10,13 +10,18 @@ export class PlayersService {
   ) {}
 
   async getPlayers(
-    page: number,
-    limit: number,
-  ): Promise<Player[]> {
-    const offset = (page - 1) * limit;
+  page: number,
+  limit: number,
+  search?: string,
+): Promise<Player[]> {
+  const offset = (page - 1) * limit;
 
-    return this.playerRepository.findAll(limit, offset);
-  }
+  return this.playerRepository.findAll(
+    limit,
+    offset,
+    search,
+  );
+}
 
   getPlayerById(id: number): Promise<Player | undefined> {
     return this.playerRepository.findOneById(id);
