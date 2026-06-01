@@ -6,7 +6,7 @@ import {
   NotFoundException,
   Param,
   ParseIntPipe,
-  Query
+  Query,
 } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { PlayerDto } from './dto/player.dto';
@@ -15,18 +15,33 @@ import { PlayerDto } from './dto/player.dto';
 export class PlayersController {
   constructor(private readonly playersService: PlayersService) {}
 
-  
   @Get()
-@HttpCode(HttpStatus.OK)
-async getPlayers(
-  @Query('page') page = 1,
-  @Query('limit') limit = 20,
-): Promise<PlayerDto[]> {
-  const players = await this.playersService.getPlayers(
-    Number(page),
-    Number(limit),
-  );
+  @HttpCode(HttpStatus.OK)
+  async getPlayers(
+    @Query('page') page = 1,
+    @Query('limit') limit = 20,
+  ): Promise<PlayerDto[]> {
+    const players = await this.playersService.getPlayers(
+      Number(page),
+      Number(limit),
+    );
 
-  return players.map((player) => new PlayerDto(player));
-}
+    return players.map((player) => new PlayerDto(player));
+  }
+
+  @Get(':id')
+  @HttpCode(HttpStatus.OK)
+  async getPlayerById(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<PlayerDto> {
+    const player = await this.playersService.getPlayerById(id);
+
+    if (!player) {
+      throw new NotFoundException(
+        `Player with ID ${id} not found.`,
+      );
+    }
+
+    return new PlayerDto(player);
+  }
 }
