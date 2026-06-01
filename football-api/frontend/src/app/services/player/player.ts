@@ -27,4 +27,14 @@ export class PlayerService {
   getPlayer(id: number): Observable<Player> {
     return this.http.get<Player>(`${this.baseUrl}/${id}`);
   }
+
+  getPlayers(
+  page: number = 1,
+  limit: number = 20,
+  search: string = '',
+): Observable<Player[]> {
+  return this.http.get<Player[]>(
+    `${this.baseUrl}?page=${page}&limit=${limit}&search=${search}`,
+  );
+}
 }
