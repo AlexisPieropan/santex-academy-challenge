@@ -15,17 +15,40 @@ export class PlayerComponent implements OnInit {
   players: Player[] = [];
   errorMessage = '';
   search = '';
+  page = 1;
+  limit = 20;
 
 loadPlayers() {
-  this.playerService.getPlayers(1, 20, this.search).subscribe({
+  this.playerService.getPlayers(
+    this.page,
+    this.limit,
+    this.search,
+  ).subscribe({
     next: (data) => (this.players = data),
     error: () => (this.errorMessage = 'Error al cargar jugadores'),
   });
 }
 
+//BOTONES PARA LA PAGINACION 
+nextPage() {
+  this.page++;
+  this.loadPlayers();
+}
+
+previousPage() {
+  if (this.page > 1) {
+    this.page--;
+    this.loadPlayers();
+  }
+}
+
+//FUNCION DEL BUSCADOR 
 onSearch(event: Event) {
   const target = event.target as HTMLInputElement;
+
   this.search = target.value;
+  this.page = 1;
+
   this.loadPlayers();
 }
 
