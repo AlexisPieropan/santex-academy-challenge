@@ -18,6 +18,12 @@
   <p><strong>Passing:</strong> {{ player.passing }}</p>
 </div>
 
+
+<h2>Skills Radar</h2>
+<div class="chart-container">
+  <canvas id="radarChart"></canvas>
+</div>
+
 <div *ngIf="!player">
   Cargando jugador...
 </div>
