@@ -14,6 +14,7 @@ export interface Player {
   shooting: number;
   dribbling: number;
   passing: number;
+  faceUrl: string;
 }
 
 @Injectable({

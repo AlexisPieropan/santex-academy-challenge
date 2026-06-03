@@ -59,6 +59,7 @@ export class SequelizePlayerRepository implements IPlayerRepository {
   player.shooting = data.shooting ?? 0;
   player.dribbling = data.dribbling ?? 0;
   player.passing = data.passing ?? 0;
+  player.faceUrl = model.playerFaceUrl;
 
   return player;
 }
