@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PlayerService, Player } from '../../services/player/player';
-
+import { MatCardModule } from '@angular/material/card';
 
 Chart.register(
   RadarController,
@@ -27,7 +27,10 @@ Chart.register(
 @Component({
   selector: 'app-player-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+  CommonModule,
+  MatCardModule,
+],
   templateUrl: './player-detail.html',
   styleUrl: './player-detail.css',
 })
