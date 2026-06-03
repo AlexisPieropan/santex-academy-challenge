@@ -15,13 +15,17 @@
 </div>
 
   <div *ngIf="players.length > 0; else noPlayers">
-    <div *ngFor="let player of players">
-      <h3>{{ player.name }}</h3>
-      <p>Club: {{ player.club }}</p>
-      <p>Posición: {{ player.position }}</p>
-      <p>Rating: {{ player.rating }}</p>
-      <hr>
-    </div>
+    <div
+  *ngFor="let player of players"
+  (click)="viewPlayer(player.id)"
+  style="cursor: pointer;"
+>
+  <h3>{{ player.name }}</h3>
+  <p>Club: {{ player.club }}</p>
+  <p>Posición: {{ player.position }}</p>
+  <p>Rating: {{ player.rating }}</p>
+  <hr>
+</div>
   </div>
 
   <ng-template #noPlayers>

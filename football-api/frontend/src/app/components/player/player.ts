@@ -1,6 +1,7 @@
 // src/app/components/player/player.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { PlayerService, Player } from '../../services/player/player';
 
 @Component({
@@ -52,7 +53,14 @@ onSearch(event: Event) {
   this.loadPlayers();
 }
 
-  constructor(private playerService: PlayerService) {}
+viewPlayer(id: number) {
+  this.router.navigate(['/player', id]);
+}
+
+  constructor(
+  private playerService: PlayerService,
+  private router: Router,
+) {}
 
  ngOnInit() {
   console.log('PlayerComponent initialized');

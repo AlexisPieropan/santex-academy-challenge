@@ -5,7 +5,7 @@ import { PlayerComponent } from './components/player/player';
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  imports: [PlayerComponent],
+  imports: [RouterOutlet],
   styleUrl: './app.css',
 })
 export class App {
