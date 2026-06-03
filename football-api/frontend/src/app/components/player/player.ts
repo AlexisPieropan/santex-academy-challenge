@@ -3,11 +3,17 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { PlayerService, Player } from '../../services/player/player';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-player',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+  CommonModule,
+  MatCardModule,
+  MatButtonModule,
+  ],
   providers: [PlayerService],
   templateUrl: './player.html',
   styleUrls: ['./player.css'],

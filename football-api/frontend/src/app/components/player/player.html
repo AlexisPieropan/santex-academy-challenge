@@ -1,34 +1,73 @@
-<!-- src/app/components/player/player.html -->
-<div class="player-container">
-  <h1>Lista de Jugadores</h1>
-  <input
-  type="text"
-  placeholder="Buscar jugador..."
-  (input)="onSearch($event)"
-/>
-<div>
-  <button (click)="previousPage()">Anterior</button>
+<div class="page-container">
 
-  <span>Página {{ page }}</span>
+  <h1 class="title">
+    ⚽ Football Players Explorer
+  </h1>
 
-  <button (click)="nextPage()">Siguiente</button>
-</div>
+  <div class="search-container">
+    <input
+      type="text"
+      placeholder="Buscar jugador..."
+      (input)="onSearch($event)"
+    />
+  </div>
 
-  <div *ngIf="players.length > 0; else noPlayers">
-    <div
-  *ngFor="let player of players"
-  (click)="viewPlayer(player.id)"
-  style="cursor: pointer;"
->
-  <h3>{{ player.name }}</h3>
-  <p>Club: {{ player.club }}</p>
-  <p>Posición: {{ player.position }}</p>
-  <p>Rating: {{ player.rating }}</p>
-  <hr>
-</div>
+  <div class="pagination">
+    <button mat-raised-button (click)="previousPage()">
+      ← Anterior
+    </button>
+
+    <span>Página {{ page }}</span>
+
+    <button mat-raised-button (click)="nextPage()">
+      Siguiente →
+    </button>
+  </div>
+
+  <div *ngIf="players.length > 0; else noPlayers" class="players-grid">
+
+    <mat-card
+      *ngFor="let player of players"
+      class="player-card"
+      (click)="viewPlayer(player.id)"
+    >
+
+      <mat-card-header>
+        <mat-card-title>
+          {{ player.name }}
+        </mat-card-title>
+
+        <mat-card-subtitle>
+          {{ player.club }}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <p>
+          <strong>Posición:</strong>
+          {{ player.position }}
+        </p>
+
+        <p>
+          <strong>Rating:</strong>
+          ⭐ {{ player.rating }}
+        </p>
+
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-flat-button>
+          Ver Detalles
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+
   </div>
 
   <ng-template #noPlayers>
     <p>{{ errorMessage || 'Cargando jugadores...' }}</p>
   </ng-template>
+
 </div>
