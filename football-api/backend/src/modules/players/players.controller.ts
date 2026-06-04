@@ -10,7 +10,10 @@ import {
 } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { PlayerDto } from './dto/player.dto';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('api/players')
 export class PlayersController {
   constructor(private readonly playersService: PlayersService) {}
