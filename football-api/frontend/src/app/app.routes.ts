@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { PlayerComponent } from './components/player/player';
 import { PlayerDetail } from './components/player-detail/player-detail';
 import { Login } from './components/login/login';
+import { PlayerCreate } from './components/player-create/player-create';
 
 export const routes: Routes = [
   {
@@ -13,7 +14,12 @@ export const routes: Routes = [
     component: PlayerComponent,
   },
   {
+  path: 'player/create',
+  component: PlayerCreate,
+},
+  {
     path: 'player/:id',
     component: PlayerDetail,
   },
+  
 ];

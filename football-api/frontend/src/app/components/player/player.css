@@ -57,3 +57,49 @@ mat-card-actions {
   display: flex;
   justify-content: flex-end;
 }
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.create-player-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  background: linear-gradient(
+    135deg,
+    #7c4dff,
+    #9c27b0
+  );
+
+  color: white;
+
+  border: none;
+  border-radius: 12px;
+
+  padding: 12px 22px;
+
+  font-weight: 600;
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition: all .25s ease;
+
+  box-shadow:
+    0 4px 12px rgba(156,39,176,.30);
+}
+
+.create-player-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(156,39,176,.40);
+}
+
+.create-player-btn:active {
+  transform: scale(.98);
+}

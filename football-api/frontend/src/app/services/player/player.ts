@@ -38,4 +38,15 @@ export class PlayerService {
     `${this.baseUrl}?page=${page}&limit=${limit}&search=${search}`,
   );
 }
+
+createPlayer(
+  player: Omit<Player, 'id' | 'faceUrl'>
+): Observable<Player> {
+  return this.http.post<Player>(
+    this.baseUrl,
+    player,
+  );
+}
+
+
 }

@@ -59,6 +59,10 @@ onSearch(event: Event) {
   this.loadPlayers();
 }
 
+goToCreatePlayer() {
+  this.router.navigate(['/player/create']);
+}
+
 viewPlayer(id: number) {
   this.router.navigate(['/player', id]);
 }
