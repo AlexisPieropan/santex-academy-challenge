@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PlayerService, Player } from '../../services/player/player';
 import { MatCardModule } from '@angular/material/card';
+import { Router } from '@angular/router';
 
 Chart.register(
   RadarController,
@@ -38,9 +39,10 @@ export class PlayerDetail implements OnInit {
   player?: Player;
 
   constructor(
-    private route: ActivatedRoute,
-    private playerService: PlayerService,
-  ) {}
+  private route: ActivatedRoute,
+  private playerService: PlayerService,
+  private router: Router,
+) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -58,6 +60,15 @@ export class PlayerDetail implements OnInit {
       },
     });
   }
+
+  editPlayer(): void {
+  if (!this.player) return;
+
+  this.router.navigate([
+    '/player/edit',
+    this.player.id,
+  ]);
+}
 
   private createRadarChart(): void {
   if (!this.player) return;

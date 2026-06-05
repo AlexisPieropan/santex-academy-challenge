@@ -1,0 +1,80 @@
+<div class="create-container">
+
+  <h1>✏️ Editar Jugador</h1>
+
+  <form (ngSubmit)="updatePlayer()">
+
+    <label>Nombre</label>
+    <input
+      type="text"
+      [(ngModel)]="player.name"
+      name="name"
+      required
+    >
+
+    <label>Club</label>
+    <input
+      type="text"
+      [(ngModel)]="player.club"
+      name="club"
+      required
+    >
+
+    <label>Posición</label>
+    <input
+      type="text"
+      [(ngModel)]="player.position"
+      name="position"
+      required
+    >
+
+    <label>Nacionalidad</label>
+    <input
+      type="text"
+      [(ngModel)]="player.nationality"
+      name="nationality"
+      required
+    >
+
+    <label>Rating</label>
+    <input
+      type="number"
+      [(ngModel)]="player.rating"
+      name="rating"
+    >
+
+    <label>Speed</label>
+    <input
+      type="number"
+      [(ngModel)]="player.speed"
+      name="speed"
+    >
+
+    <label>Shooting</label>
+    <input
+      type="number"
+      [(ngModel)]="player.shooting"
+      name="shooting"
+    >
+
+    <label>Passing</label>
+    <input
+      type="number"
+      [(ngModel)]="player.passing"
+      name="passing"
+    >
+
+    <label>Dribbling</label>
+    <input
+      type="number"
+      [(ngModel)]="player.dribbling"
+      name="dribbling"
+    >
+
+    <button type="submit">
+      Guardar Cambios
+    </button>
+
+  </form>
+
+</div>

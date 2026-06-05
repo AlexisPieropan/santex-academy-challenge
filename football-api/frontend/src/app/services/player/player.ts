@@ -48,5 +48,15 @@ createPlayer(
   );
 }
 
+updatePlayer(
+  id: number,
+  player: Omit<Player, 'id' | 'faceUrl'>
+): Observable<Player> {
+  return this.http.put<Player>(
+    `${this.baseUrl}/${id}`,
+    player,
+  );
+}
+
 
 }

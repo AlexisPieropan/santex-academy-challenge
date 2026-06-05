@@ -1,7 +1,16 @@
 <div *ngIf="player; else loading" class="detail-page">
 
-  <mat-card class="player-info-card">
+
  
+
+  <mat-card class="player-info-card">
+  <div class="actions">
+  <button
+    class="edit-player-btn"
+    (click)="editPlayer()">
+    ✏️ Editar Jugador
+  </button>
+</div>
 
     <mat-card-header>
       <mat-card-title>

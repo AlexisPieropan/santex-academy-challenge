@@ -3,6 +3,7 @@ import { PlayerComponent } from './components/player/player';
 import { PlayerDetail } from './components/player-detail/player-detail';
 import { Login } from './components/login/login';
 import { PlayerCreate } from './components/player-create/player-create';
+import { PlayerEdit } from './components/player-edit/player-edit';
 
 export const routes: Routes = [
   {
@@ -14,12 +15,15 @@ export const routes: Routes = [
     component: PlayerComponent,
   },
   {
-  path: 'player/create',
-  component: PlayerCreate,
-},
+    path: 'player/create',
+    component: PlayerCreate,
+  },
+  {
+    path: 'player/edit/:id',
+    component: PlayerEdit,
+  },
   {
     path: 'player/:id',
     component: PlayerDetail,
   },
-  
 ];
