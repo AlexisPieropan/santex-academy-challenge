@@ -4,6 +4,7 @@ import { IPlayerRepository } from '../../interfaces/player-repository.interface'
 import { PlayerDto } from './player.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CreatePlayerDto } from '../../dto/create-player.dto';
 
 @Injectable()
 export class TypeOrmPlayerRepository implements IPlayerRepository {
@@ -30,6 +31,16 @@ export class TypeOrmPlayerRepository implements IPlayerRepository {
 
     return entity;
   }
+
+  async create(
+  player: CreatePlayerDto,
+): Promise<Player> {
+  throw new Error('Method not implemented.');
+}
+
+async update(): Promise<Player | undefined> {
+  return undefined;
+}
 
   private mapToEntity(playerDto: PlayerDto): Player {
     const player = new Player();

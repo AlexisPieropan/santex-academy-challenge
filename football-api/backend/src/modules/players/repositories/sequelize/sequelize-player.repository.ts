@@ -4,6 +4,8 @@ import { PlayerModel } from './player.model'; // Sequelize model
 import { IPlayerRepository } from '../../interfaces/player-repository.interface';
 import { Player } from '../../entities/player.entity';
 import { Op } from 'sequelize';
+import { CreatePlayerDto } from '../../dto/create-player.dto';
+import { UpdatePlayerDto } from '../../dto/update-player.dto';
 
 @Injectable()
 export class SequelizePlayerRepository implements IPlayerRepository {
@@ -40,6 +42,63 @@ export class SequelizePlayerRepository implements IPlayerRepository {
     }
     return this.mapToEntity(model);
   }
+
+  async create(
+  player: CreatePlayerDto,
+): Promise<Player> {
+  const model = await this.playerModel.create({
+    fifaVersion: '25',
+    fifaUpdate: '1',
+    playerFaceUrl: '',
+    longName: player.name,
+    playerPositions: player.position,
+    clubName: player.club,
+    nationalityName: player.nationality,
+
+    overall: player.rating,
+    potential: player.rating,
+
+    age: 25,
+
+    pace: player.speed,
+    shooting: player.shooting,
+    passing: player.passing,
+    dribbling: player.dribbling,
+  }as any);
+
+  return this.mapToEntity(model);
+}
+
+async update(
+  id: number,
+  player: UpdatePlayerDto,
+): Promise<Player | undefined> {
+
+  const model =
+    await this.playerModel.findByPk(id);
+
+  if (!model) {
+    return undefined;
+  }
+
+  await model.update({
+    longName: player.name,
+    playerPositions: player.position,
+    clubName: player.club,
+    nationalityName: player.nationality,
+
+    overall: player.rating,
+    potential: player.rating,
+
+    pace: player.speed,
+    shooting: player.shooting,
+    passing: player.passing,
+    dribbling: player.dribbling,
+  } as any);
+
+  return this.mapToEntity(model);
+}
+  
 
   
 
