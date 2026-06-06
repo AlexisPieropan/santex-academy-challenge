@@ -5,6 +5,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import sequelizeConfig from './config/sequelize.config';
 import { PlayersModule } from './modules/players/players.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { UsersModule } from './modules/users/users.module';
 
 
 @Module({
@@ -17,6 +18,7 @@ import { AuthModule } from './modules/auth/auth.module';
 
   AuthModule,
   PlayersModule,
+  UsersModule,
   ],
   controllers: [],
   providers: [],

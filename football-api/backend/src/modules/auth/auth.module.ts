@@ -7,22 +7,27 @@ import { AuthService } from './auth.service';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 
+import { UsersModule } from '../users/users.module';
+
+
 @Module({
   imports: [
-  PassportModule,
+    PassportModule,
 
-  JwtModule.register({
-    secret: 'santex-secret-key',
-    signOptions: {
-      expiresIn: '1d',
-    },
-  }),
-],
+    JwtModule.register({
+      secret: 'santex-secret-key',
+      signOptions: {
+        expiresIn: '1d',
+      },
+    }),
+
+    UsersModule,
+  ],
   controllers: [AuthController],
   providers: [
-  AuthService,
-  JwtStrategy,
-],
+    AuthService,
+    JwtStrategy,
+  ],
   exports: [JwtModule],
 })
 export class AuthModule {}
